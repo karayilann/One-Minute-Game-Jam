@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] GameObject Car;
+    Rigidbody Car;
     [SerializeField] float SlipingRepeat;
     [SerializeField] float SlipingLeftRotation;
     [SerializeField] float SlipingRightRotation;
@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float speed;
     private void Awake()
     {
+       Car = GetComponent<Rigidbody>();
         rot = 1f;
     }
     void Start()
@@ -25,6 +26,7 @@ public class Movement : MonoBehaviour
     }
     private void Update()
     {
+        Car.AddRelativeForce(0f, 1, 0f * speed *Time.deltaTime);
         DriveCar();
     }
 
