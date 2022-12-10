@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float ConrolLeft;
     [SerializeField] float rot;
     [SerializeField] float speed;
+    Game game;
+   
     private void Awake()
     {
        Car = GetComponent<Rigidbody>();
@@ -27,12 +29,16 @@ public class Movement : MonoBehaviour
     }
     private void Update()
     {
-        Car.AddForce(-1*rot, 1, 0f * speed *Time.deltaTime);
-        DriveCar();
+        if (Game.isGameStart)
+        {
+            Car.AddForce(-1 * rot, 1, 0f * speed * Time.deltaTime);
+            DriveCar();
+        }
     }
 
     void DriveCar()
     {
+
         if (Input.GetKeyDown(KeyCode.D))
         {
             Car.transform.Rotate(0f, 0f, ConrolRight);
