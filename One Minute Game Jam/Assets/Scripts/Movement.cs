@@ -17,7 +17,8 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
        Car = GetComponent<Rigidbody>();
-        rot = 1f;
+        rot += 1;
+        
     }
     void Start()
     {
@@ -26,7 +27,7 @@ public class Movement : MonoBehaviour
     }
     private void Update()
     {
-        Car.AddRelativeForce(0f, 1, 0f * speed *Time.deltaTime);
+        Car.AddForce(-1*rot, 1, 0f * speed *Time.deltaTime);
         DriveCar();
     }
 
@@ -45,13 +46,13 @@ public class Movement : MonoBehaviour
     }
     void SlipingCar()
     {
-        if (rot >= 0f)
+        if (Car.rotation.z > 0)
         {
             Car.transform.Rotate(0f, 0f, SlipingLeftRotation);
             rot += SlipingLeftRotation;
         }
 
-        if(rot <= 0f)
+        if(Car.rotation.z < 0)
         {
             Car.transform.Rotate(0f, 0f, SlipingRightRotation);
             rot += SlipingRightRotation;
