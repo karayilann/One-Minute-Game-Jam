@@ -5,7 +5,7 @@ using UnityEngine;
 public class Roads : MonoBehaviour
 {
     public float speed = 4f;
-    Vector3 StartPosition;
+   private Vector3 StartPosition;
     void Start()
     {
         StartPosition = transform.position;
@@ -16,7 +16,7 @@ public class Roads : MonoBehaviour
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 
-        if (transform.position.y < -21.12f)
+        if (transform.position.y < -8.4f)
         {
             transform.position = StartPosition; 
         }
